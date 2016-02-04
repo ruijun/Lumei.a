@@ -5,7 +5,7 @@
 
 #### 项目介绍:
 
-**Lumei.a是Material&Design风格的干货集中营的非官方客户端,每天自动更新一张精选妹纸图、一个小视频、一系列精选程序猿干货（周末不更新)**
+**Lumei.a是Material Design风格的干货集中营的非官方客户端,每天自动更新一张精选妹纸图、一个小视频、一系列精选程序猿干货（周末不更新)**
 
 **项目使用了RxJava,Retrofit等优秀开源框架,采用MVP模式进行设计并运用RetroLambda表达式精简代码**
 
@@ -23,7 +23,6 @@
 ### License
 
     /*
-     *
      * Copyright (C) 2015 Drakeet <drakeet.me@gmail.com>
      * Copyright (C) 2015 GuDong <maoruibin9035@gmail.com>
      * Copyright (C) 2016 Panl <panlei106@gmail.com>
@@ -56,7 +55,7 @@
 - [x] 妹子界面基本框架
 - [x] 纯干货界面基本框架
 - [ ] 视频播放界面基本框架,考虑使用ijkplayer
-- [ ] 关于界面基本框架
+- [x] 关于界面基本框架
 - [ ] 每日定时提醒
 - [ ] 纯妹子流界面基本框架
 - [ ] 首次启动应用打开Github登陆界面,可选择跳过以后登录

@@ -43,4 +43,6 @@ public interface IMainView extends IBaseView {
     void showNoMoreData();
 
     void showMeiziList(List<Meizi> meiziList, boolean clean);
+
+    void showExitDialog();
 }

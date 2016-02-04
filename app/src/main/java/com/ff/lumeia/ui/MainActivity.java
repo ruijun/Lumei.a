@@ -24,8 +24,10 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -174,7 +176,7 @@ public class MainActivity extends ToolbarActivity<MainPresenter> implements IMai
         TipsUtils.showSnackWithAction(
                 fab,
                 getString(R.string.error),
-                Snackbar.LENGTH_INDEFINITE,
+                Snackbar.LENGTH_LONG,
                 getString(R.string.retry),
                 view -> mainPresenter.requestMeiziData(page, true));
     }
@@ -194,6 +196,29 @@ public class MainActivity extends ToolbarActivity<MainPresenter> implements IMai
             meiziList.addAll(meizis);
             meiziAdapter.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    public void showExitDialog() {
+        new AlertDialog.Builder(this)
+                .setPositiveButton(getString(R.string.quit_ok), (dialogInterface, i) -> {
+                    finish();
+                })
+                .setNegativeButton(getString(R.string.quit_cancel), (dialogInterface, i) -> {
+                    dialogInterface.dismiss();
+                })
+                .setTitle(getString(R.string.quit))
+                .setMessage(getString(R.string.want_quit))
+                .show();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            showExitDialog();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override
