@@ -20,13 +20,19 @@
 
 <resources>
 
-    <style name="Theme.AppCompat.Light.NoActionBar.FF" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- 颜色定义 -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <!--设置窗口-->
+        <!--窗口背景-->
         <item name="android:windowBackground">@color/colorBackGround</item>
+    </style>
+
+    <style name="Theme.StatusBar.Translucent.Color" parent="AppTheme">
+    </style>
+
+    <style name="Theme.StatusBar.Translucent.Image" parent="AppTheme">
     </style>
 
     <style name="TextAppearance.BigTitle.FF" parent="TextAppearance.AppCompat.Body1">

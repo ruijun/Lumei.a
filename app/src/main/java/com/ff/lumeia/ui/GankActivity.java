@@ -54,7 +54,6 @@ public class GankActivity extends ToolbarActivity<GankPresenter> implements IGan
 
     @Override
     public void init() {
-        toolbar.setTitle(R.string.gank_io);
         pagerAdapter = new GankPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
         viewPager.setOffscreenPageLimit(1);
