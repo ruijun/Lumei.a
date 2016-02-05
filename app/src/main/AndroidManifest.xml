@@ -68,6 +68,7 @@
         </activity>
         <activity
             android:name=".ui.AboutActivity"
+            android:label="@string/about"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
         </activity>

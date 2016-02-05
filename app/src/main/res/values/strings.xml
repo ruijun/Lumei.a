@@ -40,5 +40,7 @@
     <string name="quit_cancel">Cancel</string>
     <string name="quit">Quit</string>
     <string name="want_quit">Do you want quit the app?</string>
+    <string name="Introduction">Introduction</string>
+    <string name="about_me">About me</string>
 
 </resources>

@@ -40,5 +40,7 @@
     <string name="quit_cancel">我再想想</string>
     <string name="quit">退出</string>
     <string name="want_quit">你要离开我了么?</string>
+    <string name="Introduction">项目介绍</string>
+    <string name="about_me">关于我</string>
 
 </resources>
