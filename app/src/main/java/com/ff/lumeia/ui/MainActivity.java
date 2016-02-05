@@ -30,6 +30,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.OvershootInterpolator;
 
 import com.ff.lumeia.R;
 import com.ff.lumeia.model.entity.Meizi;
@@ -100,6 +101,13 @@ public class MainActivity extends ToolbarActivity<MainPresenter> implements IMai
         setUpSwipeRefreshLayout();
 
         setUpToolbar();
+
+        setUpFab();
+    }
+
+    private void setUpFab() {
+        hideFloatActionButton();
+        fab.postDelayed(this::showFloatActionButton, 756);
     }
 
     private void setUpRecyclerView() {
@@ -210,6 +218,21 @@ public class MainActivity extends ToolbarActivity<MainPresenter> implements IMai
                 .setTitle(getString(R.string.quit))
                 .setMessage(getString(R.string.want_quit))
                 .show();
+    }
+
+    @Override
+    public void showFloatActionButton() {
+        fab.animate()
+                .setInterpolator(new OvershootInterpolator(1f))
+                .translationY(0)
+                .setStartDelay(500)
+                .setDuration(500)
+                .start();
+    }
+
+    @Override
+    public void hideFloatActionButton() {
+        fab.setTranslationY(getResources().getDimensionPixelOffset(R.dimen.fab_translate_y));
     }
 
     @Override

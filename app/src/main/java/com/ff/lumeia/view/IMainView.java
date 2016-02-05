@@ -45,4 +45,8 @@ public interface IMainView extends IBaseView {
     void showMeiziList(List<Meizi> meiziList, boolean clean);
 
     void showExitDialog();
+
+    void showFloatActionButton();
+
+    void hideFloatActionButton();
 }
