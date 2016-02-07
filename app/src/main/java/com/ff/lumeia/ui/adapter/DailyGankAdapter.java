@@ -34,7 +34,6 @@ import com.ff.lumeia.R;
 import com.ff.lumeia.model.entity.Gank;
 import com.ff.lumeia.ui.WebActivity;
 
-import java.io.Serializable;
 import java.util.List;
 
 import butterknife.Bind;
@@ -106,7 +105,8 @@ public class DailyGankAdapter extends AnimRecyclerViewAdapter<DailyGankAdapter.D
         @OnClick(R.id.card_link)
         void cardClick() {
             Intent intent = new Intent(context, WebActivity.class);
-            intent.putExtra(LumeiaConfig.GANK, (Serializable) itemView.getTag());
+            intent.putExtra(LumeiaConfig.WEB_TITLE, ((Gank) itemView.getTag()).desc);
+            intent.putExtra(LumeiaConfig.WEB_URL, ((Gank) itemView.getTag()).url);
             context.startActivity(intent);
         }
 

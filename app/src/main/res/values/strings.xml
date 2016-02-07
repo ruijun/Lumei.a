@@ -42,5 +42,6 @@
     <string name="want_quit">Do you want quit the app?</string>
     <string name="Introduction">Introduction</string>
     <string name="about_me">About me</string>
+    <string name="github_lumeia">https://github.com/ChristianFF/Lumei.a</string>
 
 </resources>

@@ -32,7 +32,6 @@ import android.widget.LinearLayout;
 import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.ff.lumeia.LumeiaConfig;
 import com.ff.lumeia.R;
-import com.ff.lumeia.model.entity.Gank;
 import com.ff.lumeia.presenter.WebPresenter;
 import com.ff.lumeia.ui.base.ToolbarActivity;
 import com.ff.lumeia.util.TipsUtils;
@@ -50,7 +49,8 @@ public class WebActivity extends ToolbarActivity<WebPresenter> implements IWebVi
     LinearLayout layoutWeb;
 
     private WebPresenter webPresenter;
-    private Gank gank;
+    private String webTitle;
+    private String webUrl;
 
     @Override
     protected int provideContentViewId() {
@@ -66,9 +66,10 @@ public class WebActivity extends ToolbarActivity<WebPresenter> implements IWebVi
     @Override
     public void init() {
         Intent intent = getIntent();
-        gank = (Gank) intent.getSerializableExtra(LumeiaConfig.GANK);
-        toolbar.setTitle(gank.desc);
-        webPresenter.setWebViewSetting(webView, gank.url);
+        webTitle = intent.getStringExtra(LumeiaConfig.WEB_TITLE);
+        webUrl = intent.getStringExtra(LumeiaConfig.WEB_URL);
+        toolbar.setTitle(webTitle);
+        webPresenter.setWebViewSetting(webView, webUrl);
     }
 
     @Override
@@ -168,10 +169,10 @@ public class WebActivity extends ToolbarActivity<WebPresenter> implements IWebVi
                 webPresenter.refresh(webView);
                 break;
             case R.id.copy_url:
-                webPresenter.copyUrl(gank.url);
+                webPresenter.copyUrl(webUrl);
                 break;
             case R.id.open_in_browser:
-                webPresenter.openInBrowser(gank.url);
+                webPresenter.openInBrowser(webUrl);
                 break;
         }
         return super.onOptionsItemSelected(item);
