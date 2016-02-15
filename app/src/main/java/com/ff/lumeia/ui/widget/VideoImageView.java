@@ -29,7 +29,8 @@ import android.widget.ImageView;
 
 /**
  * 动态ImageView
- * Created by drakeet on 8/11/15.
+ * Created by feifan on 16/1/29.
+ * Contacts me:404619986@qq.com
  */
 public class VideoImageView extends ImageView implements Animator.AnimatorListener {
 
