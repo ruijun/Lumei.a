@@ -34,7 +34,6 @@ import retrofit2.RxJavaCallAdapterFactory;
 public class MyRetrofitClient {
     public static final String HOST = "http://gank.avosapps.com/api/";
     private static GankService gankService;
-    protected static final Object lock = new Object();
 
     private static Retrofit retrofit;
 
@@ -51,12 +50,14 @@ public class MyRetrofitClient {
 
 
     public static GankService getGankServiceInstance() {
-        synchronized (lock) {
-            if (gankService == null) {
-                gankService = retrofit.create(GankService.class);
+        if (gankService == null) {
+            synchronized (MyRetrofitClient.class) {
+                if (gankService == null) {
+                    gankService = retrofit.create(GankService.class);
+                }
             }
-            return gankService;
         }
+        return gankService;
     }
 
 }
