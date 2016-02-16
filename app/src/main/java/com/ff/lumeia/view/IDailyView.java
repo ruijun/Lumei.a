@@ -32,4 +32,6 @@ public interface IDailyView extends IBaseView {
     void showGankList(List<Gank> gankList);
 
     void showErrorView();
+
+    void goVideoActivity();
 }

@@ -45,6 +45,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 public class DailyActivity extends ToolbarActivity<DailyPresenter> implements IDailyView {
 
@@ -56,6 +57,11 @@ public class DailyActivity extends ToolbarActivity<DailyPresenter> implements ID
     RecyclerView recyclerViewDaily;
     @Bind(R.id.fab_play)
     FloatingActionButton fabPlay;
+
+    @OnClick(R.id.fab_play)
+    void fabClick() {
+        goVideoActivity();
+    }
 
     private DailyPresenter dailyPresenter;
 
@@ -90,7 +96,6 @@ public class DailyActivity extends ToolbarActivity<DailyPresenter> implements ID
 
     private void getIntentData() {
         meizi = (Meizi) getIntent().getSerializableExtra(LumeiaConfig.MEIZI);
-
     }
 
     private void initGankData() {
@@ -133,5 +138,14 @@ public class DailyActivity extends ToolbarActivity<DailyPresenter> implements ID
                 view -> dailyPresenter.requestDailyGankData(calendar.get(Calendar.YEAR),
                         calendar.get(Calendar.MONTH) + 1,
                         calendar.get(Calendar.DAY_OF_MONTH)));
+    }
+
+    @Override
+    public void goVideoActivity() {
+        if (gankList.size() > 0 && gankList.get(0).type.equals("休息视频")) {
+            WebVideoActivity.start(context, gankList.get(0).desc, gankList.get(0).url);
+        } else {
+            TipsUtils.showSnack(recyclerViewDaily, getString(R.string.video_error), Snackbar.LENGTH_SHORT);
+        }
     }
 }

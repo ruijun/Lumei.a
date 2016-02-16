@@ -62,9 +62,9 @@
         </activity>
         <activity
             android:name=".ui.DailyActivity"
-            android:theme="@style/Theme.StatusBar.Translucent.Image"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.StatusBar.Translucent.Image">
         </activity>
         <activity
             android:name=".ui.AboutActivity"
@@ -74,6 +74,10 @@
         </activity>
         <activity
             android:name=".ui.WebActivity"
+            android:launchMode="singleTask">
+        </activity>
+        <activity
+            android:name=".ui.WebVideoActivity"
             android:launchMode="singleTask">
         </activity>
     </application>
