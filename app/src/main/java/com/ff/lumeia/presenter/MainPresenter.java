@@ -100,12 +100,4 @@ public class MainPresenter extends BasePresenter<IMainView> {
         return meiziData;
     }
 
-    @Override
-    public void release() {
-        if (subscription != null) {
-            subscription.unsubscribe();
-        }
-    }
-
-
 }

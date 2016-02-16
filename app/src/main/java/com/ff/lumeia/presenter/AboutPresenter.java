@@ -14,8 +14,4 @@ public class AboutPresenter extends BasePresenter<IAboutView> {
         super(iView, context);
     }
 
-    @Override
-    public void release() {
-
-    }
 }

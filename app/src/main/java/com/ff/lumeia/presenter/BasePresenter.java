@@ -45,5 +45,9 @@ public abstract class BasePresenter<T extends IBaseView> {
         iView.init();
     }
 
-    public abstract void release();
+    public void release() {
+        if (subscription != null && subscription.isUnsubscribed()) {
+            subscription.unsubscribe();
+        }
+    }
 }

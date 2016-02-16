@@ -41,11 +41,6 @@ public class WebPresenter extends BasePresenter<IWebView> {
         super(iView, context);
     }
 
-    @Override
-    public void release() {
-
-    }
-
     public void setWebViewSetting(WebView webView, String url) {
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);

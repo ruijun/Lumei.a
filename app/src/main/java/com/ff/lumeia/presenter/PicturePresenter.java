@@ -45,12 +45,6 @@ public class PicturePresenter extends BasePresenter<IPictureView> {
         super(iView, context);
     }
 
-    @Override
-    public void release() {
-        if (subscription != null)
-            subscription.unsubscribe();
-    }
-
     public void saveMeiziPicture(final Bitmap bitmap, final String title) {
         subscription = Observable.create(new Observable.OnSubscribe<Uri>() {
             @Override

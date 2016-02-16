@@ -43,11 +43,6 @@ public class DailyPresenter extends BasePresenter<IDailyView> {
         super(iView, context);
     }
 
-    @Override
-    public void release() {
-        subscription.unsubscribe();
-    }
-
     public void requestDailyGankData(int year, int month, int day) {
         subscription = MyRetrofitClient.getGankServiceInstance().getDailyData(year, month, day)
                 .map(gankData -> addAllResults(gankData.results))

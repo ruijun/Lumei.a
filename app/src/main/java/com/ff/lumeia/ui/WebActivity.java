@@ -94,7 +94,6 @@ public class WebActivity extends BaseActivity<WebPresenter> implements IWebView 
             webView.removeAllViews();
             webView.destroy();
         }
-        presenter.release();
     }
 
     @Override

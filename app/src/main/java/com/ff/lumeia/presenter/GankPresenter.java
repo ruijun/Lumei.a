@@ -34,8 +34,4 @@ public class GankPresenter extends BasePresenter<IGankView> {
         super(iView, context);
     }
 
-    @Override
-    public void release() {
-
-    }
 }

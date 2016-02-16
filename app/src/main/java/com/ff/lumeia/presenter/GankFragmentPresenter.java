@@ -38,13 +38,6 @@ public class GankFragmentPresenter extends BasePresenter<IGankFragmentView> {
         super(iView, context);
     }
 
-    @Override
-    public void release() {
-        if (subscription != null) {
-            subscription.unsubscribe();
-        }
-    }
-
     public void requestGankData(String type, int page, boolean clean) {
         iView.showProgressBar();
         subscription = MyRetrofitClient.getGankServiceInstance().getBatteryData(type, page)

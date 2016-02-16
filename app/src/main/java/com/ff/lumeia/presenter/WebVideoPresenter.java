@@ -16,11 +16,6 @@ public class WebVideoPresenter extends BasePresenter<IWebVideoView> {
         super(iView, context);
     }
 
-    @Override
-    public void release() {
-
-    }
-
     public void loadWebVideo(WebView webView, String url) {
         webView.setWebChromeClient(new Chrome());
         webView.loadUrl(url);

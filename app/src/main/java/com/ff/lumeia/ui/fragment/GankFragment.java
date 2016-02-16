@@ -171,9 +171,4 @@ public class GankFragment extends BaseFragment<GankFragmentPresenter> implements
         }
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        gankFragmentPresenter.release();
-    }
 }
