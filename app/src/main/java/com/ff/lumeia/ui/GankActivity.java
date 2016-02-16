@@ -26,19 +26,18 @@ import android.support.v4.view.ViewPager;
 import com.ff.lumeia.R;
 import com.ff.lumeia.presenter.GankPresenter;
 import com.ff.lumeia.ui.adapter.GankPagerAdapter;
-import com.ff.lumeia.ui.base.ToolbarActivity;
+import com.ff.lumeia.ui.base.BaseActivity;
 import com.ff.lumeia.view.IGankView;
 
 import butterknife.Bind;
 
-public class GankActivity extends ToolbarActivity<GankPresenter> implements IGankView {
+public class GankActivity extends BaseActivity<GankPresenter> implements IGankView {
 
     @Bind(R.id.tab)
     TabLayout tab;
     @Bind(R.id.view_pager)
     ViewPager viewPager;
 
-    private GankPresenter gankPresenter;
     private GankPagerAdapter pagerAdapter;
 
     @Override
@@ -48,8 +47,8 @@ public class GankActivity extends ToolbarActivity<GankPresenter> implements IGan
 
     @Override
     protected void initPresenter() {
-        gankPresenter = new GankPresenter(this, this);
-        gankPresenter.init();
+        presenter = new GankPresenter(this, this);
+        presenter.init();
     }
 
     @Override

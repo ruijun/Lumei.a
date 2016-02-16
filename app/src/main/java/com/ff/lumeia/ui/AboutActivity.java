@@ -27,13 +27,13 @@ import com.ff.lumeia.BuildConfig;
 import com.ff.lumeia.LumeiaConfig;
 import com.ff.lumeia.R;
 import com.ff.lumeia.presenter.AboutPresenter;
-import com.ff.lumeia.ui.base.ToolbarActivity;
+import com.ff.lumeia.ui.base.BaseActivity;
 import com.ff.lumeia.view.IAboutView;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class AboutActivity extends ToolbarActivity<AboutPresenter> implements IAboutView {
+public class AboutActivity extends BaseActivity<AboutPresenter> implements IAboutView {
 
     @Bind(R.id.text_version)
     TextView textVersion;
@@ -43,8 +43,6 @@ public class AboutActivity extends ToolbarActivity<AboutPresenter> implements IA
         showMyGitHub();
     }
 
-    private AboutPresenter aboutPresenter;
-
     @Override
     protected int provideContentViewId() {
         return R.layout.activity_about;
@@ -52,8 +50,8 @@ public class AboutActivity extends ToolbarActivity<AboutPresenter> implements IA
 
     @Override
     protected void initPresenter() {
-        aboutPresenter = new AboutPresenter(this, this);
-        aboutPresenter.init();
+        presenter = new AboutPresenter(this, this);
+        presenter.init();
     }
 
     @Override

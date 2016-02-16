@@ -28,7 +28,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.animation.OvershootInterpolator;
 
@@ -36,7 +35,7 @@ import com.ff.lumeia.R;
 import com.ff.lumeia.model.entity.Meizi;
 import com.ff.lumeia.presenter.MainPresenter;
 import com.ff.lumeia.ui.adapter.MeiziAdapter;
-import com.ff.lumeia.ui.base.ToolbarActivity;
+import com.ff.lumeia.ui.base.BaseActivity;
 import com.ff.lumeia.util.TipsUtils;
 import com.ff.lumeia.view.IMainView;
 
@@ -52,7 +51,7 @@ import butterknife.OnClick;
  * Created by feifan on 16/1/26.
  * Contacts me:404619986@qq.com
  */
-public class MainActivity extends ToolbarActivity<MainPresenter> implements IMainView {
+public class MainActivity extends BaseActivity<MainPresenter> implements IMainView {
 
     @Bind(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -67,8 +66,6 @@ public class MainActivity extends ToolbarActivity<MainPresenter> implements IMai
     }
 
     private static final int PRELOAD_SIZE = 6;
-
-    private MainPresenter mainPresenter;
 
     private List<Meizi> meiziList;
 
@@ -87,14 +84,14 @@ public class MainActivity extends ToolbarActivity<MainPresenter> implements IMai
 
     @Override
     protected void initPresenter() {
-        mainPresenter = new MainPresenter(this, this);
-        mainPresenter.init();
+        presenter = new MainPresenter(this, this);
+        presenter.init();
     }
 
     @Override
     public void init() {
         meiziList = new ArrayList<>();
-        mainPresenter.loadMeiziDataFromDB(meiziList);
+        presenter.loadMeiziDataFromDB(meiziList);
 
         setUpRecyclerView();
 
@@ -122,7 +119,7 @@ public class MainActivity extends ToolbarActivity<MainPresenter> implements IMai
 
                 if (isReachBottom((LinearLayoutManager) layoutManager) && dy > 0) {
                     page++;
-                    mainPresenter.requestMeiziData(page, false);
+                    presenter.requestMeiziData(page, false);
                 }
             }
         });
@@ -140,9 +137,9 @@ public class MainActivity extends ToolbarActivity<MainPresenter> implements IMai
                 R.color.colorAccentLight);
         swipeRefreshLayout.setOnRefreshListener(() -> {
             page = 1;
-            mainPresenter.requestMeiziData(page, true);
+            presenter.requestMeiziData(page, true);
         });
-        swipeRefreshLayout.postDelayed(() -> mainPresenter.requestMeiziData(page, true), 256);
+        swipeRefreshLayout.postDelayed(() -> presenter.requestMeiziData(page, true), 256);
     }
 
     private void setUpToolbar() {
@@ -186,7 +183,7 @@ public class MainActivity extends ToolbarActivity<MainPresenter> implements IMai
                 getString(R.string.error),
                 Snackbar.LENGTH_LONG,
                 getString(R.string.retry),
-                view -> mainPresenter.requestMeiziData(page, true));
+                view -> presenter.requestMeiziData(page, true));
     }
 
     @Override
@@ -244,19 +241,21 @@ public class MainActivity extends ToolbarActivity<MainPresenter> implements IMai
         return super.onKeyDown(keyCode, event);
     }
 
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return super.onCreateOptionsMenu(menu);
+    protected int provideMenuResId() {
+        return R.menu.menu_main;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.about: {
+            case R.id.about:
                 goAboutActivity();
                 return true;
-            }
+
+            default:
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

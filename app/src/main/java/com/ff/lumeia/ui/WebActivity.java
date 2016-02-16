@@ -23,7 +23,6 @@ package com.ff.lumeia.ui;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
@@ -33,13 +32,13 @@ import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.ff.lumeia.LumeiaConfig;
 import com.ff.lumeia.R;
 import com.ff.lumeia.presenter.WebPresenter;
-import com.ff.lumeia.ui.base.ToolbarActivity;
+import com.ff.lumeia.ui.base.BaseActivity;
 import com.ff.lumeia.util.TipsUtils;
 import com.ff.lumeia.view.IWebView;
 
 import butterknife.Bind;
 
-public class WebActivity extends ToolbarActivity<WebPresenter> implements IWebView {
+public class WebActivity extends BaseActivity<WebPresenter> implements IWebView {
 
     @Bind(R.id.number_progress_bar)
     NumberProgressBar numberProgressBar;
@@ -48,7 +47,6 @@ public class WebActivity extends ToolbarActivity<WebPresenter> implements IWebVi
     @Bind(R.id.layout_web)
     LinearLayout layoutWeb;
 
-    private WebPresenter webPresenter;
     private String webTitle;
     private String webUrl;
 
@@ -59,8 +57,8 @@ public class WebActivity extends ToolbarActivity<WebPresenter> implements IWebVi
 
     @Override
     protected void initPresenter() {
-        webPresenter = new WebPresenter(this, this);
-        webPresenter.init();
+        presenter = new WebPresenter(this, this);
+        presenter.init();
     }
 
     @Override
@@ -69,7 +67,7 @@ public class WebActivity extends ToolbarActivity<WebPresenter> implements IWebVi
         webTitle = intent.getStringExtra(LumeiaConfig.WEB_TITLE);
         webUrl = intent.getStringExtra(LumeiaConfig.WEB_URL);
         toolbar.setTitle(webTitle);
-        webPresenter.setWebViewSetting(webView, webUrl);
+        presenter.setWebViewSetting(webView, webUrl);
     }
 
     @Override
@@ -96,7 +94,7 @@ public class WebActivity extends ToolbarActivity<WebPresenter> implements IWebVi
             webView.removeAllViews();
             webView.destroy();
         }
-        webPresenter.release();
+        presenter.release();
     }
 
     @Override
@@ -155,24 +153,27 @@ public class WebActivity extends ToolbarActivity<WebPresenter> implements IWebVi
         return super.onKeyDown(keyCode, event);
     }
 
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_web, menu);
-        return true;
+    protected int provideMenuResId() {
+        return R.menu.menu_web;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.refresh:
-                webPresenter.refresh(webView);
-                break;
+                presenter.refresh(webView);
+                return true;
+
             case R.id.copy_url:
-                webPresenter.copyUrl(webUrl);
-                break;
+                presenter.copyUrl(webUrl);
+                return true;
+
             case R.id.open_in_browser:
-                webPresenter.openInBrowser(webUrl);
+                presenter.openInBrowser(webUrl);
+                return true;
+
+            default:
                 break;
         }
         return super.onOptionsItemSelected(item);

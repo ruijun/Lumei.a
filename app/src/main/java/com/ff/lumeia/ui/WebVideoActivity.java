@@ -10,19 +10,18 @@ import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.ff.lumeia.LumeiaConfig;
 import com.ff.lumeia.R;
 import com.ff.lumeia.presenter.WebVideoPresenter;
-import com.ff.lumeia.ui.base.ToolbarActivity;
+import com.ff.lumeia.ui.base.BaseActivity;
 import com.ff.lumeia.ui.widget.WebVideoView;
 import com.ff.lumeia.view.IWebVideoView;
 
 import butterknife.Bind;
 
-public class WebVideoActivity extends ToolbarActivity<WebVideoPresenter> implements IWebVideoView {
+public class WebVideoActivity extends BaseActivity<WebVideoPresenter> implements IWebVideoView {
 
     @Bind(R.id.web_video_view)
     WebVideoView webVideoView;
     @Bind(R.id.number_progress_bar)
     NumberProgressBar numberProgressBar;
-    private WebVideoPresenter webVideoPresenter;
 
     @Override
     protected int provideContentViewId() {
@@ -31,8 +30,8 @@ public class WebVideoActivity extends ToolbarActivity<WebVideoPresenter> impleme
 
     @Override
     protected void initPresenter() {
-        webVideoPresenter = new WebVideoPresenter(this, this);
-        webVideoPresenter.init();
+        presenter = new WebVideoPresenter(this, this);
+        presenter.init();
     }
 
     @Override
@@ -44,7 +43,7 @@ public class WebVideoActivity extends ToolbarActivity<WebVideoPresenter> impleme
         }
 
         setTitle(getIntent().getStringExtra(LumeiaConfig.WEB_TITLE));
-        webVideoPresenter.loadWebVideo(webVideoView, getIntent().getStringExtra(LumeiaConfig.WEB_URL));
+        presenter.loadWebVideo(webVideoView, getIntent().getStringExtra(LumeiaConfig.WEB_URL));
     }
 
     public static void start(Context context, String title, String url) {

@@ -21,11 +21,18 @@
 package com.ff.lumeia.ui.base;
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.DecelerateInterpolator;
 
+import com.ff.lumeia.R;
 import com.ff.lumeia.presenter.BasePresenter;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
@@ -35,6 +42,13 @@ import butterknife.ButterKnife;
  */
 public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity {
     protected T presenter;
+    protected ActionBar actionBar;
+    protected boolean isToolBarHiding = false;
+
+    @Bind(R.id.toolbar)
+    protected Toolbar toolbar;
+    @Bind(R.id.app_bar)
+    protected AppBarLayout appBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +56,56 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         setContentView(provideContentViewId());
         ButterKnife.bind(this);
         initPresenter();
+        checkPresenterIsNull();
+        initToolbar();
     }
 
     protected abstract int provideContentViewId();
 
     protected abstract void initPresenter();
+
+    private void checkPresenterIsNull() {
+        if (presenter == null) {
+            throw new IllegalStateException("presenter must be init in initPresenter() method ");
+        }
+    }
+
+    protected void initToolbar() {
+        if (toolbar == null) {
+            return;
+        }
+        setSupportActionBar(toolbar);
+        actionBar = getSupportActionBar();
+        if (actionBar == null) {
+            throw new IllegalStateException("Toolbar is null!");
+        }
+        actionBar.setDisplayHomeAsUpEnabled(canBack());
+    }
+
+    protected int provideMenuResId() {
+        return -1;
+    }
+
+    protected boolean canBack() {
+        return true;
+    }
+
+    protected void hideOrShowToolBar() {
+        appBar.animate()
+                .translationY(isToolBarHiding ? 0 : -appBar.getHeight())
+                .setInterpolator(new DecelerateInterpolator(2))
+                .start();
+        isToolBarHiding = !isToolBarHiding;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (provideMenuResId() < 0) {
+            return true;
+        }
+        getMenuInflater().inflate(provideMenuResId(), menu);
+        return true;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

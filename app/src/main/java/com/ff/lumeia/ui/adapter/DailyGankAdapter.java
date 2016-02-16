@@ -62,12 +62,12 @@ public class DailyGankAdapter extends AnimRecyclerViewAdapter<DailyGankAdapter.D
 
     @Override
     public void onBindViewHolder(DailyGankViewHolder holder, int position) {
-        Gank gank = gankList.get(position);
+        Gank gank = gankList.get(position + 1);
         holder.cardLink.setTag(gank);
         if (position == 0) {
             showCategory(true, holder.textCategory);
         } else {
-            if (gankList.get(position).type.equals(gankList.get(position - 1).type)) {
+            if (gank.type.equals(gankList.get(position).type)) {
                 showCategory(false, holder.textCategory);
             } else {
                 showCategory(true, holder.textCategory);
@@ -90,7 +90,7 @@ public class DailyGankAdapter extends AnimRecyclerViewAdapter<DailyGankAdapter.D
 
     @Override
     public int getItemCount() {
-        return gankList == null ? 0 : gankList.size();
+        return gankList == null ? 0 : gankList.size() - 1;
     }
 
     class DailyGankViewHolder extends RecyclerView.ViewHolder {

@@ -35,7 +35,7 @@ import com.ff.lumeia.model.entity.Gank;
 import com.ff.lumeia.model.entity.Meizi;
 import com.ff.lumeia.presenter.DailyPresenter;
 import com.ff.lumeia.ui.adapter.DailyGankAdapter;
-import com.ff.lumeia.ui.base.ToolbarActivity;
+import com.ff.lumeia.ui.base.BaseActivity;
 import com.ff.lumeia.ui.widget.VideoImageView;
 import com.ff.lumeia.util.TipsUtils;
 import com.ff.lumeia.view.IDailyView;
@@ -47,7 +47,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class DailyActivity extends ToolbarActivity<DailyPresenter> implements IDailyView {
+public class DailyActivity extends BaseActivity<DailyPresenter> implements IDailyView {
 
     @Bind(R.id.img_video)
     VideoImageView imgVideo;
@@ -62,8 +62,6 @@ public class DailyActivity extends ToolbarActivity<DailyPresenter> implements ID
     void fabClick() {
         goVideoActivity();
     }
-
-    private DailyPresenter dailyPresenter;
 
     private List<Gank> gankList;
     private DailyGankAdapter dailyGankAdapter;
@@ -80,8 +78,8 @@ public class DailyActivity extends ToolbarActivity<DailyPresenter> implements ID
 
     @Override
     protected void initPresenter() {
-        dailyPresenter = new DailyPresenter(this, this);
-        dailyPresenter.init();
+        presenter = new DailyPresenter(this, this);
+        presenter.init();
     }
 
     @Override
@@ -102,7 +100,7 @@ public class DailyActivity extends ToolbarActivity<DailyPresenter> implements ID
         gankList = new ArrayList<>();
         calendar = Calendar.getInstance();
         calendar.setTime(meizi.publishedAt);
-        dailyPresenter.requestDailyGankData(calendar.get(Calendar.YEAR),
+        presenter.requestDailyGankData(calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH) + 1,
                 calendar.get(Calendar.DAY_OF_MONTH));
         collapsingLayout.setTitle(meizi.desc);
@@ -135,7 +133,7 @@ public class DailyActivity extends ToolbarActivity<DailyPresenter> implements ID
                 getString(R.string.error),
                 Snackbar.LENGTH_INDEFINITE,
                 getString(R.string.retry),
-                view -> dailyPresenter.requestDailyGankData(calendar.get(Calendar.YEAR),
+                view -> presenter.requestDailyGankData(calendar.get(Calendar.YEAR),
                         calendar.get(Calendar.MONTH) + 1,
                         calendar.get(Calendar.DAY_OF_MONTH)));
     }

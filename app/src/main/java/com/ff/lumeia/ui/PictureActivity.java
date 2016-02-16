@@ -27,7 +27,6 @@ import android.graphics.drawable.Drawable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AlertDialog;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
@@ -39,7 +38,7 @@ import com.ff.lumeia.LumeiaConfig;
 import com.ff.lumeia.R;
 import com.ff.lumeia.model.entity.Meizi;
 import com.ff.lumeia.presenter.PicturePresenter;
-import com.ff.lumeia.ui.base.ToolbarActivity;
+import com.ff.lumeia.ui.base.BaseActivity;
 import com.ff.lumeia.util.DateUtils;
 import com.ff.lumeia.util.TipsUtils;
 import com.ff.lumeia.view.IPictureView;
@@ -47,7 +46,7 @@ import com.ff.lumeia.view.IPictureView;
 import butterknife.Bind;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
-public class PictureActivity extends ToolbarActivity<PicturePresenter> implements IPictureView {
+public class PictureActivity extends BaseActivity<PicturePresenter> implements IPictureView {
 
     @Bind(R.id.img_meizi_full)
     ImageView imgMeiziFull;
@@ -58,8 +57,6 @@ public class PictureActivity extends ToolbarActivity<PicturePresenter> implement
     private PhotoViewAttacher photoViewAttacher;
     private Bitmap girl;
 
-    private PicturePresenter picturePresenter;
-
     @Override
     protected int provideContentViewId() {
         return R.layout.activity_picture;
@@ -67,8 +64,8 @@ public class PictureActivity extends ToolbarActivity<PicturePresenter> implement
 
     @Override
     protected void initPresenter() {
-        picturePresenter = new PicturePresenter(this, this);
-        picturePresenter.init();
+        presenter = new PicturePresenter(this, this);
+        presenter.init();
     }
 
     @Override
@@ -111,24 +108,24 @@ public class PictureActivity extends ToolbarActivity<PicturePresenter> implement
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_picture, menu);
-        return super.onCreateOptionsMenu(menu);
+    protected int provideMenuResId() {
+        return R.menu.menu_picture;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.save: {
-                picturePresenter.saveMeiziPicture(girl,
+            case R.id.save:
+                presenter.saveMeiziPicture(girl,
                         DateUtils.convertDateToEnString(meizi.publishedAt));
                 return true;
-            }
-            case R.id.share: {
-                picturePresenter.shareMeiziPictureToFriends(girl,
+
+            case R.id.share:
+                presenter.shareMeiziPictureToFriends(girl,
                         DateUtils.convertDateToEnString(meizi.publishedAt));
                 return true;
-            }
+            default:
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -142,7 +139,7 @@ public class PictureActivity extends ToolbarActivity<PicturePresenter> implement
                     dialogInterface.dismiss();
                 })
                 .setPositiveButton("投出大师球!", (dialogInterface, i) -> {
-                    picturePresenter.saveMeiziPicture(girl,
+                    presenter.saveMeiziPicture(girl,
                             DateUtils.convertDateToEnString(meizi.publishedAt));
                     dialogInterface.dismiss();
                 }).show();
