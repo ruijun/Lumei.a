@@ -151,15 +151,21 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMainVi
     }
 
     @Override
+    public void goSettingActivity() {
+        Intent starter = new Intent(MainActivity.this, SettingActivity.class);
+        startActivity(starter);
+    }
+
+    @Override
     public void goAboutActivity() {
-        Intent intent = new Intent(MainActivity.this, AboutActivity.class);
-        startActivity(intent);
+        Intent starter = new Intent(MainActivity.this, AboutActivity.class);
+        startActivity(starter);
     }
 
     @Override
     public void goGankActivity() {
-        Intent intent = new Intent(this, GankActivity.class);
-        startActivity(intent);
+        Intent starter = new Intent(this, GankActivity.class);
+        startActivity(starter);
     }
 
     @Override
@@ -252,6 +258,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMainVi
         switch (item.getItemId()) {
             case R.id.about:
                 goAboutActivity();
+                return true;
+
+            case R.id.setting:
+                goSettingActivity();
                 return true;
 
             default:

@@ -17,8 +17,7 @@
   ~
   ~ You should have received a copy of the GNU General Public License
   ~ along with Lumei.a.  If not, see <http://www.gnu.org/licenses/>.
-  -->
-
+-->
 <manifest
     package="com.ff.lumeia"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -79,6 +78,8 @@
         <activity
             android:name=".ui.WebVideoActivity"
             android:launchMode="singleTask">
+        </activity>
+        <activity android:name=".ui.SettingActivity">
         </activity>
     </application>
 

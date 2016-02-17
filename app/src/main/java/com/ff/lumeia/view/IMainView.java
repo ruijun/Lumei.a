@@ -30,6 +30,8 @@ import java.util.List;
  * Contacts me:404619986@qq.com
  */
 public interface IMainView extends IBaseView {
+    void goSettingActivity();
+
     void goAboutActivity();
 
     void goGankActivity();

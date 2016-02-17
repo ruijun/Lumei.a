@@ -43,6 +43,10 @@
     <string name="Introduction">Introduction</string>
     <string name="about_me">About me</string>
     <string name="github_lumeia">https://github.com/ChristianFF/Lumei.a</string>
-    <string name="video_error">木有找到视频!</string>
+    <string name="video_error">Can not find video!</string>
+    <string name="setting">Setting</string>
+    <string name="notification">Notification</string>
+    <string name="daily_reminder">Daily Reminder</string>
+    <string name="notify_at_1pm">Send Notification at 1 p.m.</string>
 
 </resources>

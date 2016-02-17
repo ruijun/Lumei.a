@@ -42,5 +42,9 @@
     <string name="want_quit">你要离开我了么?</string>
     <string name="Introduction">项目介绍</string>
     <string name="about_me">关于我</string>
+    <string name="setting">设置</string>
+    <string name="notification">通知</string>
+    <string name="daily_reminder">每日提醒</string>
+    <string name="notify_at_1pm">每日中午1点推送通知提醒</string>
 
 </resources>
