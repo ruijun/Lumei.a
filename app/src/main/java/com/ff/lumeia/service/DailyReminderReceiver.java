@@ -24,7 +24,7 @@ public class DailyReminderReceiver extends BroadcastReceiver {
                     context.getString(R.string.meizi_notification_message),
                     R.drawable.ic_books_white);
             AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-            long oneDay = 5 * 1000;
+            long oneDay = 24 * 60 * 60 * 1000;
             long triggerAtTime = SystemClock.elapsedRealtime() + oneDay;
             Intent i = new Intent(context, LongRunningReceiver.class);
             PendingIntent pi = PendingIntent.getBroadcast(context, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);

@@ -31,10 +31,10 @@ public class DailyReminderUtils {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.setTimeZone(TimeZone.getTimeZone("GMT+8"));
-        calendar.set(Calendar.HOUR_OF_DAY, 22);
-        calendar.set(Calendar.MINUTE, 9);
-        calendar.set(Calendar.SECOND, 30);
-        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 13);
+        calendar.set(Calendar.MINUTE, 11);
+        calendar.set(Calendar.SECOND, 11);
+        calendar.set(Calendar.MILLISECOND, 111);
         long selectTime = calendar.getTimeInMillis();
         // 如果当前时间大于设置的时间，那么就从第二天的设定时间开始
         if (systemTime > selectTime) {
