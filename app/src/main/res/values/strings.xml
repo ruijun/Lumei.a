@@ -48,5 +48,6 @@
     <string name="notification">Notification</string>
     <string name="daily_reminder">Daily Reminder</string>
     <string name="notify_at_1pm">Send Notification at 1 p.m.</string>
+    <string name="meizi_notification_message">Girls are ready!Come on,Baby!</string>
 
 </resources>

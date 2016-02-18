@@ -24,6 +24,7 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
+import com.ff.lumeia.util.SharedPreferenceUtils;
 import com.litesuits.orm.LiteOrm;
 
 /**
@@ -40,6 +41,7 @@ public class LumeiaApp extends Application {
     public void onCreate() {
         super.onCreate();
         appContext = this;
+        SharedPreferenceUtils.init(this);
         createDB();
     }
 

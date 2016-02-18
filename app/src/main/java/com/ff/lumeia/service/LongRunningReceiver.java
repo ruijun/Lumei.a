@@ -8,10 +8,10 @@ import android.content.Intent;
  * Created by feifan on 16/2/17.
  * Contacts me:404619986@qq.com
  */
-public class AlarmReceiver extends BroadcastReceiver {
+public class LongRunningReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        Intent starter = new Intent(context, DailyReminderService.class);
-        context.startService(starter);
+        Intent starter = new Intent(context, DailyReminderReceiver.class);
+        context.sendBroadcast(starter);
     }
 }

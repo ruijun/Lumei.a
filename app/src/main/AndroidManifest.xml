@@ -79,8 +79,13 @@
             android:name=".ui.WebVideoActivity"
             android:launchMode="singleTask">
         </activity>
-        <activity android:name=".ui.SettingActivity">
+        <activity
+            android:name=".ui.SettingActivity"
+            android:launchMode="singleTask">
         </activity>
+
+        <receiver android:name=".service.DailyReminderReceiver"/>
+        <receiver android:name=".service.LongRunningReceiver"/>
     </application>
 
 </manifest>

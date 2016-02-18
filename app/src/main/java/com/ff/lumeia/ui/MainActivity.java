@@ -36,6 +36,8 @@ import com.ff.lumeia.model.entity.Meizi;
 import com.ff.lumeia.presenter.MainPresenter;
 import com.ff.lumeia.ui.adapter.MeiziAdapter;
 import com.ff.lumeia.ui.base.BaseActivity;
+import com.ff.lumeia.util.DailyReminderUtils;
+import com.ff.lumeia.util.SharedPreferenceUtils;
 import com.ff.lumeia.util.TipsUtils;
 import com.ff.lumeia.view.IMainView;
 
@@ -100,6 +102,14 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMainVi
         setUpToolbar();
 
         setUpFab();
+
+        registerAlarmService();
+    }
+
+    private void registerAlarmService() {
+        SharedPreferenceUtils.putBoolean("daily_reminder",
+                SharedPreferenceUtils.getBoolean("daily_reminder", true));
+        DailyReminderUtils.register();
     }
 
     private void setUpFab() {

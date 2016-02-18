@@ -46,5 +46,6 @@
     <string name="notification">通知</string>
     <string name="daily_reminder">每日提醒</string>
     <string name="notify_at_1pm">每日中午1点推送通知提醒</string>
+    <string name="meizi_notification_message">妹子已经饥渴难耐了!快来吧!</string>
 
 </resources>
