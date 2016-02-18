@@ -53,5 +53,5 @@ dependencies {
     compile 'com.github.chrisbanes.photoview:library:1.2.4'
     compile 'com.daimajia.numberprogressbar:library:1.2@aar'
     compile 'de.hdodenhof:circleimageview:2.0.0'
-    compile(name: 'headsup', ext: 'aar')
+    compile(name: 'headsup-1.1.0', ext: 'aar')
 }
