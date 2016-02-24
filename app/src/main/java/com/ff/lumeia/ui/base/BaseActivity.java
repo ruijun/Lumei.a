@@ -110,10 +110,12 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home: {
+            case android.R.id.home:
                 onBackPressed();
                 break;
-            }
+
+            default:
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
