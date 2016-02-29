@@ -42,6 +42,10 @@
      * along with Lumei.a.  If not, see <http://www.gnu.org/licenses/>.
      */
 
+#### Download
+
+[Fir.im](http://fir.im/b7w6)
+
 #### ScreenShot
 
 ![screenshot](/screenshot/main.png)
